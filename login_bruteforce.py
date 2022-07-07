@@ -1,5 +1,7 @@
 import requests
-import termcolor import colored
+import termcolor 
+import colored
+
 
 url = input('[+] Enter Page URL: ')
 username = input('[+] Enter Username For the Account to Bruteforce: ')
