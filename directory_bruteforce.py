@@ -1,32 +1,20 @@
 import requests
 
-
-url = input('[+] Enter Page URL: ')
-username = input('[+] Enter Username For the Account to Bruteforce: ')
-password_file = input('[+] Enter Password File to Use: ')
-login_failed_string = input('[+] Enter String That Occurs When Login Fails: ')
-cookie_value = input('Enter Cookie Value(Optional): ')
+target_url = input('[*] Enter Target URL: ')
+file_name = input('[*] Enter Name Of The File Containing Directories: ')
 
 
-def cracking(username, url)
-    for password in passwords:
-        password = password.strip()
-        print('Trying: ' + password)
-        data = {'username':username,'password':password,'Login':'submit'} #fields require modification per target
-        if cookie_value != '': 
-            response = requests.get(url, params = {'username':username,'password':password,'Login':'Login'}, < cookies = {'Cookie': cookie_value}) #fields & request.get require modification per target
-        else:
-            response = requests.post(url, data=data) #request.post requires modification per target
-        if login_failed_string in response.content.decode():
-            pass
-        else:
-            print('[+] Found Username: ==> ' + username)
-            print('[+] Found Password: ==> ' + password)
-            exit()
+def request(url):
+    try:
+        request requests.get("http://" + url)
+    except requests.exceptions.ConnectionError:
+        pass
 
 
-with open(password_file, 'r') as passwords:
-    cracking(username, url)
-
-
-print('[!!] Password Not in List')
+file = open(file_name, 'r')
+for line in file:
+    directory = line.strip()
+    full_url = target_url + '/' + directory
+    response = request(full_url)
+    if response:
+        print('[*] Discovered Directory At This Path: ' + full_url)
